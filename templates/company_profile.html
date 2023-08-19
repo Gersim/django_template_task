@@ -1,0 +1,223 @@
+<html><head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous" defer=""></script>
+</head>
+<body data-new-gr-c-s-check-loaded="14.1120.0" data-gr-ext-installed="">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/index.php">EMP INC</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/index.php">Companies</a>
+                </li>
+            </ul>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid px-5">
+
+            <div class="card w-75" style="margin-left: auto;margin-right: auto;margin-top: 20px">
+                <div class="card-body">
+                <div class="pb-2">
+                {% block content %}
+                    <h2 class="card-title" style="text-align: center;">{{ company_name}}</h2>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 d-flex flex-column justify-content-between px-4 pb-4">
+                        <table style="width: 100%: 10px">
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <span class="card-title fs-5 fw-bold">Revenue:</span>
+                                </td>
+                                <td>
+                                    <span class="fs-5 text-end text-success">$ <em>{{ mean_salary }}</em></span>
+                                </td>
+                            </tr>
+                             <tr>
+                                <td>
+                                    <span class="card-title fs-5 fw-bold">Total Positions:</span>
+                                </td>
+                                <td>
+                                    <span class="fs-5 text-end text-success">25</span>
+                                </td>
+                            </tr>
+                             <tr>
+                                <td>
+                                    <span class="card-title fs-5 fw-bold">Mean Salary:</span>
+                                </td>
+                                <td>
+                                    <span class="fs-5 text-end text-success">$ 47965.27</span>
+                                </td>
+                            </tr>
+                            </tbody>
+                         </table>
+                            <div class="d-flex flex-row justify-content-start">
+                                <div>
+                                    <label class="fs-5 text-primary fw-bold">
+                                        Male {{ comp_profile.male_perc }}%
+                                    </label>
+                                </div>
+                                <div class="px-3"></div>
+                                <div>
+                                     <label class="fs-5 text-danger fw-bold">
+                                         Female {{ comp_profile.female_perc }}%
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="col-md-6">
+                        <style>
+                            .spendings-table td,.spendings-table th{
+                                padding: 4px 16px;
+                            }
+                        </style>
+                        <table class="table table-borderless table-light spendings-table">
+                            <thead class="table-secondary">
+                                <tr>
+                                    <th scope="col">Age</th>
+                                    <th scope="col">Number of Emp</th>
+                                    <th scope="col">Sending</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    <tr>
+                                        <td>0 - 28</td>
+                                        <td>{{ comp_profile.age_group.0_28.count }}</td>
+                                        <td class="text-success">$ {{ comp_profile.age_group.0_28.spendings }}</td>
+                                    </tr>
+                                     <tr>
+                                        <td>28 - 34</td>
+                                        <td>{{ comp_profile.age_group.28_34.count }}</td>
+                                        <td class="text-success">$ {{comp_profile.age_group.28_34.spendings  }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>34 - 40</td>
+                                        <td>{{ comp_profile.age_group.34_40.count }}</td>
+                                        <td class="text-success">$ {{ comp_profile.age_group.34_40.spendings}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>40 - 100</td>
+                                        <td>{{ comp_profile.age_group.40_100.count }}</td>
+                                        <td class="text-success">$ {{ comp_profile.age_group.40_100.spendings }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Total</th>
+                                        <th>{{ comp_profile.tot_emp }}</th>
+                                        <th class="text-success">$ {{ comp_profile.total_spending }}</th>
+                                    </tr>
+                            </tbody>
+    </table>
+</div>
+</div>
+</div>
+</div>
+
+<br>
+<br>
+
+<nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Employees
+        </button>
+        <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Insights
+        </button>
+    </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active py-3" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+       <div class="table-responsive">
+           <table class="table">
+               <thead class="table-light">
+               <tr>
+                   <form method="post" action="company.php?company=Bernier LLC"></form>
+                       <th scope="col"><input class="form-control" type="text" name="name" placeholder="Search..."></th>
+                       <th scope="col">
+                           <label for="dropdown"></label><select id="dropdown" class="form-select" name="age">
+                               <option value=""> Age</option>
+                               <option value="1"> 0 - 20</option>
+                               <option value="2"> 20 - 30</option>
+                               <option value="3"> 30 - 40</option>
+                               <option value="4"> 40-50</option>
+                               <option value="5"> &gt;50</option>
+                           </select>
+                       </th>
+                       <th scope="col"><input class="form-control" type="text" name="phone" placeholder="Phone Number">
+                       </th>
+                       <th scope="col">
+                           <select id="dropdown" class="form-select" name="distance">
+                               <option value="">Distance</option>
+                               <option value="1"> 0 - 20</option>
+                               <option value="2"> 20 - 50</option>
+                               <option value="3"> 50 - 100</option>
+                               <option value="4"> &gt; 100</option>
+                           </select>
+                       </th>
+                       <th scope="col">
+                           <select id="dropdown" class="form-select" name="jobTitle">
+                               <option value="">Select Job Title</option>
+                               <option value="Central Paradigm Analyst">Central Paradigm Analyst</option><option value="Investor Group Agent">Investor Group Agent</option><option value="Dynamic Data Consultant">Dynamic Data Consultant</option><option value="National Directives Executive">National Directives Executive</option><option value="Investor Assurance Officer">Investor Assurance Officer</option><option value="Global Web Coordinator">Global Web Coordinator</option><option value="Lead Division Liaison">Lead Division Liaison</option><option value="Central Response Designer">Central Response Designer</option><option value="Internal Operations Representative">Internal Operations Representative</option><option value="Chief Mobility Planner">Chief Mobility Planner</option><option value="Human Metrics Engineer">Human Metrics Engineer</option><option value="International Intranet Director">International Intranet Director</option><option value="Regional Interactions Administrator">Regional Interactions Administrator</option><option value="Product Group Liaison">Product Group Liaison</option><option value="Regional Operations Architect">Regional Operations Architect</option><option value="Dynamic Group Director">Dynamic Group Director</option><option value="Internal Operations Strategist">Internal Operations Strategist</option><option value="National Web Assistant">National Web Assistant</option><option value="Customer Communications Administrator">Customer Communications Administrator</option><option value="Principal Infrastructure Engineer">Principal Infrastructure Engineer</option><option value="Senior Paradigm Consultant">Senior Paradigm Consultant</option><option value="Dynamic Data Liaison">Dynamic Data Liaison</option><option value="Internal Accountability Associate">Internal Accountability Associate</option><option value="Human Functionality Associate">Human Functionality Associate</option><option value="Principal Factors Assistant">Principal Factors Assistant</option><option value="Investor Marketing Representative">Investor Marketing Representative</option><option value="Human Branding Consultant">Human Branding Consultant</option><option value="Corporate Communications Facilitator">Corporate Communications Facilitator</option><option value="Future Applications Director">Future Applications Director</option><option value="Future Configuration Architect">Future Configuration Architect</option><option value="Future Identity Developer">Future Identity Developer</option><option value="Lead Program Officer">Lead Program Officer</option><option value="Central Configuration Developer">Central Configuration Developer</option><option value="Human Accounts Associate">Human Accounts Associate</option><option value="Future Assurance Supervisor">Future Assurance Supervisor</option><option value="International Response Designer">International Response Designer</option><option value="Regional Configuration Agent">Regional Configuration Agent</option><option value="Investor Integration Officer">Investor Integration Officer</option><option value="Investor Research Representative">Investor Research Representative</option><option value="Senior Configuration Strategist">Senior Configuration Strategist</option><option value="Chief Identity Director">Chief Identity Director</option><option value="Regional Data Director">Regional Data Director</option><option value="District Markets Orchestrator">District Markets Orchestrator</option><option value="Corporate Program Specialist">Corporate Program Specialist</option><option value="Global Identity Analyst">Global Identity Analyst</option><option value="International Security Specialist">International Security Specialist</option><option value="Principal Interactions Specialist">Principal Interactions Specialist</option><option value="Direct Paradigm Planner">Direct Paradigm Planner</option><option value="Regional Communications Producer">Regional Communications Producer</option><option value="Internal Configuration Facilitator">Internal Configuration Facilitator</option><option value="Legacy Accounts Developer">Legacy Accounts Developer</option><option value="National Mobility Supervisor">National Mobility Supervisor</option><option value="International Solutions Officer">International Solutions Officer</option><option value="National Branding Orchestrator">National Branding Orchestrator</option><option value="Human Functionality Supervisor">Human Functionality Supervisor</option><option value="Internal Program Analyst">Internal Program Analyst</option><option value="Dynamic Accounts Producer">Dynamic Accounts Producer</option><option value="Principal Infrastructure Representative">Principal Infrastructure Representative</option><option value="Customer Data Strategist">Customer Data Strategist</option><option value="Regional Integration Manager">Regional Integration Manager</option><option value="District Communications Consultant">District Communications Consultant</option><option value="Future Markets Producer">Future Markets Producer</option><option value="Corporate Intranet Designer">Corporate Intranet Designer</option><option value="Future Factors Executive">Future Factors Executive</option><option value="Customer Metrics Consultant">Customer Metrics Consultant</option><option value="Principal Factors Coordinator">Principal Factors Coordinator</option><option value="Lead Optimization Specialist">Lead Optimization Specialist</option><option value="Senior Response Coordinator">Senior Response Coordinator</option><option value="Regional Marketing Planner">Regional Marketing Planner</option><option value="Regional Metrics Architect">Regional Metrics Architect</option><option value="Regional Functionality Technician">Regional Functionality Technician</option><option value="Product Usability Representative">Product Usability Representative</option><option value="Human Branding Orchestrator">Human Branding Orchestrator</option><option value="Internal Quality Technician">Internal Quality Technician</option><option value="Direct Assurance Assistant">Direct Assurance Assistant</option><option value="Human Web Planner">Human Web Planner</option><option value="Future Response Strategist">Future Response Strategist</option><option value="Product Communications Officer">Product Communications Officer</option><option value="Corporate Functionality Supervisor">Corporate Functionality Supervisor</option><option value="Regional Branding Technician">Regional Branding Technician</option><option value="International Assurance Developer">International Assurance Developer</option><option value="Principal Accountability Orchestrator">Principal Accountability Orchestrator</option><option value="Chief Markets Representative">Chief Markets Representative</option><option value="Corporate Assurance Designer">Corporate Assurance Designer</option><option value="Investor Data Orchestrator">Investor Data Orchestrator</option><option value="District Implementation Manager">District Implementation Manager</option><option value="Dynamic Creative Strategist">Dynamic Creative Strategist</option><option value="Future Brand Engineer">Future Brand Engineer</option><option value="National Program Analyst">National Program Analyst</option><option value="International Infrastructure Specialist">International Infrastructure Specialist</option><option value="Product Identity Agent">Product Identity Agent</option><option value="Product Program Strategist">Product Program Strategist</option><option value="Forward Communications Engineer">Forward Communications Engineer</option><option value="Lead Accountability Associate">Lead Accountability Associate</option><option value="Corporate Metrics Planner">Corporate Metrics Planner</option><option value="Dynamic Research Planner">Dynamic Research Planner</option><option value="Central Response Liaison">Central Response Liaison</option><option value="Human Configuration Specialist">Human Configuration Specialist</option><option value="Internal Division Liaison">Internal Division Liaison</option><option value="Forward Division Liaison">Forward Division Liaison</option><option value="International Marketing Engineer">International Marketing Engineer</option><option value="Lead Functionality Designer">Lead Functionality Designer</option><option value="Regional Tactics Producer">Regional Tactics Producer</option><option value="District Branding Administrator">District Branding Administrator</option><option value="Internal Applications Orchestrator">Internal Applications Orchestrator</option><option value="Regional Security Technician">Regional Security Technician</option><option value="Lead Division Analyst">Lead Division Analyst</option><option value="Chief Accounts Facilitator">Chief Accounts Facilitator</option><option value="Internal Applications Director">Internal Applications Director</option><option value="Forward Web Liaison">Forward Web Liaison</option><option value="Regional Web Assistant">Regional Web Assistant</option><option value="National Markets Engineer">National Markets Engineer</option><option value="Human Security Agent">Human Security Agent</option><option value="International Division Strategist">International Division Strategist</option><option value="Direct Markets Facilitator">Direct Markets Facilitator</option><option value="Forward Factors Officer">Forward Factors Officer</option><option value="International Accounts Executive">International Accounts Executive</option><option value="District Functionality Executive">District Functionality Executive</option><option value="Central Communications Developer">Central Communications Developer</option><option value="Senior Integration Coordinator">Senior Integration Coordinator</option><option value="Lead Metrics Administrator">Lead Metrics Administrator</option><option value="Chief Data Orchestrator">Chief Data Orchestrator</option><option value="Product Response Representative">Product Response Representative</option><option value="Corporate Factors Associate">Corporate Factors Associate</option><option value="Global Integration Manager">Global Integration Manager</option><option value="Future Operations Officer">Future Operations Officer</option><option value="International Paradigm Coordinator">International Paradigm Coordinator</option><option value="Dynamic Research Orchestrator">Dynamic Research Orchestrator</option><option value="Internal Applications Planner">Internal Applications Planner</option><option value="Senior Intranet Specialist">Senior Intranet Specialist</option><option value="Lead Integration Facilitator">Lead Integration Facilitator</option><option value="Regional Division Administrator">Regional Division Administrator</option><option value="Corporate Directives Facilitator">Corporate Directives Facilitator</option><option value="Future Program Designer">Future Program Designer</option><option value="Legacy Creative Designer">Legacy Creative Designer</option><option value="Internal Integration Orchestrator">Internal Integration Orchestrator</option><option value="Human Paradigm Executive">Human Paradigm Executive</option><option value="Central Intranet Developer">Central Intranet Developer</option><option value="Future Program Officer">Future Program Officer</option><option value="Legacy Brand Engineer">Legacy Brand Engineer</option><option value="Future Operations Consultant">Future Operations Consultant</option><option value="Customer Assurance Engineer">Customer Assurance Engineer</option><option value="Customer Division Coordinator">Customer Division Coordinator</option><option value="National Quality Designer">National Quality Designer</option><option value="Future Optimization Officer">Future Optimization Officer</option><option value="Direct Functionality Architect">Direct Functionality Architect</option><option value="Investor Solutions Technician">Investor Solutions Technician</option><option value="Chief Security Officer">Chief Security Officer</option>                           </select>
+                       </th>
+                       <th scope="col">
+                           <select id="dropdown" class="form-control" name="jobType">
+                               <option value="">Select Job Type</option>
+                               <option value="Assistant">Assistant</option><option value="Producer">Producer</option><option value="Strategist">Strategist</option><option value="Supervisor">Supervisor</option><option value="Orchestrator">Orchestrator</option><option value="Representative">Representative</option><option value="Coordinator">Coordinator</option><option value="Specialist">Specialist</option><option value="Liaison">Liaison</option><option value="Facilitator">Facilitator</option><option value="Engineer">Engineer</option><option value="Analyst">Analyst</option><option value="Consultant">Consultant</option><option value="Designer">Designer</option><option value="Administrator">Administrator</option><option value="Technician">Technician</option><option value="Associate">Associate</option><option value="Director">Director</option><option value="Agent">Agent</option><option value="Executive">Executive</option><option value="Planner">Planner</option><option value="Architect">Architect</option><option value="Manager">Manager</option><option value="Officer">Officer</option><option value="Developer">Developer</option>                           </select>
+                       </th>
+                       <th scope="col">
+                           <select id="dropdown" class="form-select" name="salary">
+                               <option value="">Select salary</option>
+                               <option value="1">0- 20000</option>
+                               <option value="2">20000 - 40000</option>
+                               <option value="3">40000 - 60000</option>
+                               <option value="4">60000 - 80000</option>
+                               <option value="5">&gt; 80000</option>
+                           </select>
+                       </th>
+                       <th scope="col">
+                           <button name="submit" class="btn btn-outline-dark" type="submit">Search</button>
+                       </th>
+
+
+               </tr>
+               <tr>
+                   <th scope="col">Name</th>
+                   <th scope="col">Age</th>
+                   <th scope="col">Phone</th>
+                   <th scope="col">Distance</th>
+                   <th scope="col">Job Title</th>
+                   <th scope="col">Job Type</th>
+                   <th scope="col">Salary</th>
+                   <th scope="col">Action</th>
+               </tr>
+               </thead>
+               <tbody>
+{#           {% block content %}#}
+                {% for emp in employees  %}
+                <tr>
+                    <td>{{ emp.name }}</td>
+                    <td>{{ emp.age }}</td>
+                    <td>{{ emp.phone }}</td>
+                    <td>{{ emp.distance }}</td>
+                    <td>{{ emp.job.title }}</td>
+                    <td>{{ emp.job.type }}</td>
+                    <td>${{ emp.salary }}</td>
+                    <td><a class="btn btn-outline-primary" href="#">Profile</a></td>
+                </tr>
+               {% endfor %}
+            {% endblock content %}
+               </tbody>
+           </table>
+       </div>
+    </div>
+</div>
+</div>
+</body>
+</html>
